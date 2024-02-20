@@ -1,49 +1,105 @@
 package week02.collection;
 
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Recipe {
     public static void main(String[] args) {
-        //1주차 과제
-        //  입력값
-        //    - 내가 좋아하는 요리 제목을 먼저 입력합니다.
-        //    - 요리 별점을 1~5 사이의 소수점이 있는 실수로 입력해주세요. (ex. 3.5)
-        //    - 이어서 내가 좋아하는 요리 레시피를 한 문장씩 10문장을 입력합니다.
-        //  출력값
-        //    - 입력이 종료되면 요리 제목을 괄호로 감싸서 먼저 출력 해줍니다.
-        //    - 이어서, 요리 별점을 소수점을 제외한 정수로만 출력해줍니다. (ex. 3)
-        //    - 바로 뒤에 정수별점을 5점만점 퍼센트로 표현했을 때 값을 실수로 출력해줍니다. (ex. 60.0%)
-        //    - 이어서, 입력한 모든 문장 앞에 번호를 붙여서 모두 출력 해줍니다.
+//        자료구조 요리 레시피 메모장 만들기
+//
+//        - 입력값
+//                - 저장할 자료구조명을 입력합니다. (List / Set / Map)
+//                - 내가 좋아하는 요리 제목을 먼저 입력합니다.
+//                - 이어서 내가 좋아하는 요리 레시피를 한문장씩 입력합니다.
+//        - 입력을 마쳤으면 마지막에 “끝” 문자를 입력합니다.
+//        - 출력값
+//                - 입력이 종료되면 저장한 자료구조 이름과 요리 제목을 괄호로 감싸서 먼저 출력 해줍니다.
+//                - 이어서, 입력한 모든 문장앞에 번호를 붙여서 입력 순서에 맞게 모두 출력 해줍니다.
         Scanner sc = new Scanner(System.in);
 
-        LinkedList<String> recipe = new LinkedList<>();
+        System.out.println("저장할 자료구조명을 입력하세요 (List/Set/Map)");
+        System.out.print(" > ");
+        String coll = sc.nextLine();
 
+        
+        if (Objects.equals(coll, "List")) {
+            LinkedList<String> recipe = new LinkedList<>();
 
-        System.out.println("제목을 입력하세요.");
-        System.out.print("> ");
-        String title = sc.nextLine();
-        System.out.println("별점을 입력하세요.");
-        System.out.print("> ");
-        float rate = Float.parseFloat(sc.nextLine());
-        System.out.println("한 문장씩 입력하세요");
+            System.out.println("제목을 입력하세요");
+            System.out.print(" > ");
+            String title = sc.nextLine();
 
-        for (int i = 0; i < 10; i++) {
-            System.out.print((i + 1) + " > ");
-            recipe.add(i, sc.nextLine());
+            System.out.println("내용을 한 문장씩 입력하세요");
+
+            while (true) {
+                System.out.print(" > ");
+                String input = sc.nextLine();
+                if (Objects.equals(input, "끝")) {
+                    break;
+                }
+                recipe.add(input);
+            }
+
+            System.out.println("[ List로 저장된 " + title + " ]");
+
+            for (int i = 0; i < recipe.size(); i++) {
+                System.out.println((i + 1) + ". " + recipe.get(i));
+            }
+        } else if (Objects.equals(coll, "Set")) {
+            LinkedHashSet<String> recipe = new LinkedHashSet<>();
+
+            System.out.println("제목을 입력하세요");
+            System.out.print(" > ");
+            String title = sc.nextLine();
+
+            System.out.println("내용을 한 문장씩 입력하세요");
+
+            while (true) {
+                System.out.print(" > ");
+                String input = sc.nextLine();
+                if (Objects.equals(input, "끝")) {
+                    break;
+                }
+                recipe.add(input);
+            }
+
+            System.out.println("[ Set으로 저장된 " + title + " ]");
+
+            Iterator iter = recipe.iterator();
+
+            for (int i = 0; i < recipe.size(); i++) {
+                System.out.println((i + 1) + ". " + iter.next());
+            }
+        } else if (Objects.equals(coll, "Map")) {
+            Map<Integer, String> strMap = new HashMap<>();
+
+            System.out.println("제목을 입력하세요");
+            System.out.print(" > ");
+            String title = sc.nextLine();
+
+            int inputNum = 0;
+
+            System.out.println("내용을 한 문장씩 입력하세요");
+
+            while (true) {
+                System.out.print(" > ");
+                String input = sc.nextLine();
+                if (Objects.equals(input, "끝")) {
+                    break;
+                }
+                strMap.put(inputNum++, input);
+            }
+
+            System.out.println("[ Map 으로 저장된 " + title + " ]");
+
+            for (int i = 0; i < strMap.size(); i++) {
+
+                int number = i + 1;
+                System.out.println(number + ". " + strMap.get(i));
+            }
+        } else {
+            System.out.println("잘못된 값이 입력되었습니다.");
         }
 
-
-
-        int intRate = (int)rate;
-        double perRate = intRate * 100 / 5.0;
-
-        System.out.println("[ " + title + " ]");
-        System.out.println("별점 : " + intRate + " (" + perRate + "%)");
-
-        for (int i = 0; i < 10; i++) {
-            System.out.println((i + 1) + ". " + recipe.get(i));
-        }
 
     }
 
