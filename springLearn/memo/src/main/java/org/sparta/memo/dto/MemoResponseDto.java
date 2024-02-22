@@ -5,9 +5,9 @@ import org.sparta.memo.entity.Memo;
 
 @Getter
 public class MemoResponseDto {
-    private Long id;
-    private String username;
-    private String contents;
+    private final Long id;
+    private final String username;
+    private final String contents;
 
     public MemoResponseDto(Memo memo) {
         this.id = memo.getId();

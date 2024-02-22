@@ -29,18 +29,15 @@ public class MemoController {
         memoList.put(memo.getId(), memo);
 
         // Entity -> ResponseDto
-        MemoResponseDto memoResponseDto = new MemoResponseDto(memo);
-
-        return memoResponseDto;
+        return new MemoResponseDto(memo);
     }
 
     @GetMapping("/memos")
     public List<MemoResponseDto> getMemos() {
         // Map To List
-        List<MemoResponseDto> responseList = memoList.values().stream()
-                .map(MemoResponseDto::new).toList();
 
-        return responseList;
+        return memoList.values().stream()
+                .map(MemoResponseDto::new).toList();
     }
 
     @PutMapping("/memos/{id}")

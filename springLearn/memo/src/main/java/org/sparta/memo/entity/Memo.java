@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.sparta.memo.dto.MemoRequestDto;
-import org.sparta.memo.dto.MemoResponseDto;
 
 @Getter
 @Setter
