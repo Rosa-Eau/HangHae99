@@ -11,7 +11,6 @@ public class RequestController {
         return "hello-request-form";
     }
 
-    // [Request sample]
     // GET http://localhost:8080/hello/request/star/Robbie/age/95
     @GetMapping("/star/{name}/age/{age}")
     @ResponseBody
@@ -19,7 +18,6 @@ public class RequestController {
         return String.format("Hello, @PathVariable.<br> name = %s, age = %d", name, age);
     }
 
-    // [Request sample]
     // GET http://localhost:8080/hello/request/form/param?name=Robbie&age=95
     @GetMapping("/form/param")
     @ResponseBody
@@ -27,7 +25,6 @@ public class RequestController {
         return String.format("Hello, @RequestParam.<br> name = %s, age = %d", name, age);
     }
 
-    // [Request sample]
     // POST http://localhost:8080/hello/request/form/param
     // Header
     //  Content type: application/x-www-form-urlencoded
@@ -39,7 +36,6 @@ public class RequestController {
         return String.format("Hello, @RequestParam.<br> name = %s, age = %d", name, age);
     }
 
-    // [Request sample]
     // POST http://localhost:8080/hello/request/form/model
     // Header
     //  Content type: application/x-www-form-urlencoded
@@ -51,7 +47,6 @@ public class RequestController {
         return String.format("Hello, @ModelAttribute.<br> (name = %s, age = %d) ", star.name, star.age);
     }
 
-    // [Request sample]
     // GET http://localhost:8080/hello/request/form/param/model?name=Robbie&age=95
     @GetMapping("/form/param/model")
     @ResponseBody
@@ -59,7 +54,6 @@ public class RequestController {
         return String.format("Hello, @ModelAttribute.<br> (name = %s, age = %d) ", star.name, star.age);
     }
 
-    // [Request sample]
     // POST http://localhost:8080/hello/request/form/json
     // Header
     //  Content type: application/json
