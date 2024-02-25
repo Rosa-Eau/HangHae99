@@ -1,5 +1,6 @@
 package org.sparta.memo.service;
 
+import jakarta.transaction.Transactional;
 import org.sparta.memo.dto.MemoRequestDto;
 import org.sparta.memo.dto.MemoResponseDto;
 import org.sparta.memo.entity.Memo;
@@ -31,21 +32,36 @@ public class MemoService { // memoService 이름으로 빈에 등록
 
     public List<MemoResponseDto> getMemos() {
         // DB 조회
-        return memoRepository.findAll();
+        return memoRepository.findAll().stream().map(MemoResponseDto::new).toList();
     }
 
+    @Transactional
     public Long updateMemo(Long id, MemoRequestDto requestDto) {
         // 해당 메모가 DB에 존재하는지 확인
-        return memoRepository.update(id, requestDto);
+        Memo memo = findMemo(id);
+
+        // memo 내용 수정
+        memo.update(requestDto);
+
+        return id;
     }
 
     public Long deleteMemo(Long id) {
         // 해당 메모가 DB에 존재하는지 확인
-       return memoRepository.delete(id);
+        Memo memo = findMemo(id);
+
+        // memo 삭제
+        memoRepository.delete(memo);
+
+        return id;
     }
 
 
-
+    private Memo findMemo(Long id) {
+        return memoRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("선택한 메모는 존재하지 않습니다.")
+        );
+    }
 
 
 }
