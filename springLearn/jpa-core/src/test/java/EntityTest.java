@@ -1,5 +1,3 @@
-package com.sparta.jpacore;
-
 import com.sparta.entity.Memo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
