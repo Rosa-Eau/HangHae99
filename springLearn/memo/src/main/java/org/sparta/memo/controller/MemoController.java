@@ -3,7 +3,6 @@ package org.sparta.memo.controller;
 import org.sparta.memo.dto.MemoRequestDto;
 import org.sparta.memo.dto.MemoResponseDto;
 import org.sparta.memo.service.MemoService;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
