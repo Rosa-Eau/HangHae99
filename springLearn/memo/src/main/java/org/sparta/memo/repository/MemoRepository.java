@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface MemoRepository extends JpaRepository<Memo, Long> {
     List<Memo> findAllByOrderByModifiedAtDesc(); // ModifiedAt을 내림차순으로 전부 찾아줘
+    List<Memo> findByContentsContainsOrderByModifiedAtDesc(String contents);
 }

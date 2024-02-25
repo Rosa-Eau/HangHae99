@@ -2,6 +2,7 @@ package org.sparta.memo.controller;
 
 import org.sparta.memo.dto.MemoRequestDto;
 import org.sparta.memo.dto.MemoResponseDto;
+import org.sparta.memo.entity.Memo;
 import org.sparta.memo.service.MemoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,12 @@ public class MemoController {
 
     @GetMapping("/memos")
     public List<MemoResponseDto> getMemos() {
-       return memoService.getMemos();
+        return memoService.getMemos();
+    }
+
+    @GetMapping("/memos/contents")
+    public List<MemoResponseDto> getMemosByKeyword(String keyword) {
+        return memoService.getMemosByKeyword(keyword);
     }
 
     @PutMapping("/memos/{id}")
@@ -37,6 +43,5 @@ public class MemoController {
     public Long deleteMemo(@PathVariable Long id) {
         return memoService.deleteMemo(id);
     }
-
 
 }
