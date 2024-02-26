@@ -27,7 +27,7 @@ public class MemoService { // memoService 이름으로 빈에 등록
         Memo saveMemo = memoRepository.save(memo);
 
         // Entity -> ResponseDto
-        return new MemoResponseDto(memo);
+        return new MemoResponseDto(saveMemo);
     }
 
     public List<MemoResponseDto> getMemos() {
@@ -59,7 +59,6 @@ public class MemoService { // memoService 이름으로 빈에 등록
 
         return id;
     }
-
 
     private Memo findMemo(Long id) {
         return memoRepository.findById(id).orElseThrow(() ->
