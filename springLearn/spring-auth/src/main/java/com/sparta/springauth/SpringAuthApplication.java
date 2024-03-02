@@ -3,6 +3,8 @@ package com.sparta.springauth;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @SpringBootApplication // (exclude = SecurityAutoConfiguration.class) // Spring Security 인증 기능 제외
 public class SpringAuthApplication {
