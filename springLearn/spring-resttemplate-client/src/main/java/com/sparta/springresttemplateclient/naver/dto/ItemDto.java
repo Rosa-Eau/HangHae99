@@ -1,4 +1,4 @@
-package com.sparta.springresttemplateclient.dto;
+package com.sparta.springresttemplateclient.naver.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,12 +8,16 @@ import org.json.JSONObject;
 @Getter
 @NoArgsConstructor
 public class ItemDto {
-
     private String title;
-    private int price;
+    private String link;
+    private String image;
+    private int lprice;
+
 
     public ItemDto(JSONObject itemJson) throws JSONException {
         this.title = itemJson.getString("title");
-        this.price = itemJson.getInt("price");
+        this.link = itemJson.getString("link");
+        this.image = itemJson.getString("image");
+        this.lprice = itemJson.getInt("lprice");
     }
 }
